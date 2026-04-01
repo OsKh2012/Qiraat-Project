@@ -1,9 +1,11 @@
 let currentQiraatIndex = 0;
 let currentAyahIndex = 0;
+let audioPlayer = new Audio();
 
 let qiraatData = [
     {
         name: "Qaloon an Nafi'",
+        folder: "qaloon",
         text: [
             "بسم الله الرحمن الرحيم",
             "الحمد لله رب العالمين",
@@ -66,10 +68,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // NEXT
     document.getElementById("next-ayah").addEventListener("click", function () {
-        let qiraat = qiraatData[currentQiraatIndex];
+    let qiraat = qiraatData[currentQiraatIndex];
 
         if (currentAyahIndex < qiraat.text.length - 1) {
             currentAyahIndex++;
+
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+
             displayAyah();
         }
     });
@@ -78,8 +84,22 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("prev-ayah").addEventListener("click", function () {
         if (currentAyahIndex > 0) {
             currentAyahIndex--;
+
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
+
             displayAyah();
         }
+    });
+
+    // PLAY AUDIO
+    document.getElementById("play-ayah").addEventListener("click", function () {
+        let ayahNumber = String(currentAyahIndex + 1).padStart(2, '0');
+
+        let audioSrc = `audio/qaloon/Al-Fatiha-Qaloon--${ayahNumber}.mp3`;
+
+        audioPlayer.src = audioSrc;
+        audioPlayer.play();
     });
 
     // INITIAL LOAD
