@@ -64,8 +64,8 @@ function displayQiraatButtons() {
 // ---------------- MAIN INIT ----------------
 document.addEventListener("DOMContentLoaded", function () {
 
-    // NEXT button
-    document.getElementById("Next").addEventListener("click", function () {
+    // NEXT
+    document.getElementById("next-ayah").addEventListener("click", function () {
         let qiraat = qiraatData[currentQiraatIndex];
 
         if (currentAyahIndex < qiraat.text.length - 1) {
@@ -74,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // PREVIOUS button
-    document.getElementById("Previous").addEventListener("click", function () {
+    // PREVIOUS
+    document.getElementById("prev-ayah").addEventListener("click", function () {
         if (currentAyahIndex > 0) {
             currentAyahIndex--;
             displayAyah();
